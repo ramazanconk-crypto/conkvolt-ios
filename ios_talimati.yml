@@ -1,0 +1,24 @@
+name: ConkVolt iOS Derleyici
+on: [push]
+
+jobs:
+  macos-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Python Kur
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Briefcase Kur
+        run: |
+          pip install briefcase
+      - name: iOS Uygulamasını Hazırla
+        run: |
+          briefcase create ios --no-input
+          briefcase build ios --no-input
+      - name: Bitmiş Uygulamayı Bana Ver
+        uses: actions/upload-artifact@v3
+        with:
+          name: ConkVolt-iOS-Paketi
+          path: build/CONKVOLT/ios/xcode/
