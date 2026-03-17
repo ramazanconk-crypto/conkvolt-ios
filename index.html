@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarVolt - Ramazan Hoca</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; text-align: center; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
+        h2 { color: #f39c12; }
+        input { width: 80%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #27ae60; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; width: 85%; font-size: 16px; }
+        #sonuc { margin-top: 20px; text-align: left; background: #e8f6ef; padding: 15px; border-radius: 10px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>☀️ SolarVolt Pro</h2>
+        <p>Hesaplama için Amper değerini giriniz:</p>
+        <input type="number" id="amper" placeholder="Örn: 150">
+        <button onclick="hesapla()">HESAPLA</button>
+        
+        <div id="sonuc"></div>
+    </div>
+
+    <script>
+        function hesapla() {
+            let amp = document.getElementById('amper').value;
+            if(!amp) return;
+            
+            let kablo = (amp / 1.25).toFixed(1);
+            let sonucDiv = document.getElementById('sonuc');
+            sonucDiv.style.display = "block";
+            sonucDiv.innerHTML = `
+                <b>✅ Sonuçlar:</b><br><br>
+                📍 <b>Gerekli Kablo:</b> ${kablo} mm²<br>
+                📍 <b>Panel Gücü:</b> 40W Solar Panel<br>
+                📍 <b>Akü Kapasitesi:</b> 12V 3.5Ah<br>
+                📍 <b>İnverter:</b> 300W Modifiye Sinüs<br><br>
+                <small>*Bu hesaplama Ramazan Hoca tarafından SolarVolt projesi için hazırlanmıştır.</small>
+            `;
+        }
+    </script>
+</body>
+</html>
